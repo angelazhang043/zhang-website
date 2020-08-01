@@ -1,0 +1,17 @@
+.rotate-right {
+    transition: .5s ease;
+}
+
+.rotate-right:hover {
+    transform: rotate(15deg);
+    transition: .5s ease;
+}
+
+.rotate-left {
+    transition: .5s ease;
+}
+
+.rotate-left:hover {
+    transform: rotate(-15deg);
+    transition: .5s ease;
+}

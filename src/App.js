@@ -1,21 +1,42 @@
 import React, { Component } from 'react'
-import Home from "./LandingPages/Home"
-import HorizontalScroll from 'react-scroll-horizontal'
- 
+import LandingPage from "./LandingPages/LandingPage"
+import SlideDrawer from "./LandingPages/slideMenu/SlideDrawer"
+import Backdrop from "./LandingPages/slideMenu/Backdrop"
+
+
 class App extends Component {
-  render() {
-    const child   = { width: "1536px", height: "770px", backgroundColor: "blue"}
-    const childTwo   = { width: "1536px", height: "770px", backgroundColor: "green"}
-    const parent  = { width: "1536px", height: "750px", backgroundColor: "#4B4B4B"}
-    return (
-      <div style={parent}>
-        <HorizontalScroll reverseScroll="True">
-            <div> <Home /></div>
-            <div style={child} />
-        </HorizontalScroll>
-      </div>
-    )
-  }
+    state = { drawerOpen: false }
+
+    drawerToggleClickHandler = () => {
+        this.setState({
+            drawerOpen: !this.state.drawerOpen
+        })
+    }
+
+    backdropClickHandler = () => {
+        this.setState({
+            drawerOpen: false
+        })
+    }
+
+    render() {
+
+        let backdrop
+        if (this.state.drawerOpen) {
+            backdrop = <Backdrop close={this.backdropClickHandler} />
+        }
+
+        return (
+
+
+            <div>
+                <SlideDrawer show={this.state.drawerOpen} />
+                {backdrop}
+                < LandingPage toggle={this.drawerToggleClickHandler} />
+            </div>
+
+        )
+    }
 }
 
 export default App;
